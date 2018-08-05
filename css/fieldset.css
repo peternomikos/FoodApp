@@ -1,0 +1,23 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+.wrapper{
+    margin: auto;
+    width: 100%;
+    max-width: 1000px;
+    padding:10px;
+    background-color: #ccc;
+}
+fieldset{
+    float: left;
+    width: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+}
+fieldset input{
+    width: 10%;
+}
+.wrapper #breaker{
+    clear: both;
+}

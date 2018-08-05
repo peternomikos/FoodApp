@@ -33,7 +33,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $row = $result_m_d->fetch_array(MYSQLI_NUM);
 
     if($row[0]==0){
-      header("location:../php/Manager_View.php");
+      header("location:../html/Manager_View.html");
     } else {
       header("location:../html/Delivery_View.html");
     }

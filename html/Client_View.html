@@ -8,7 +8,9 @@
 </head>
 
 <body>
-
+  <script type="text/javascript"
+  src="https://maps.googleapis.com/maps/api/js?key=API_KEY&sensor=false">
+  </script>
   <section>
     <h2 id="order" align="center">Τοποθετήστε την παραγγελία σας!<h2>
     <article>
@@ -30,14 +32,25 @@
             <li>Τυρόπιτα:</br>    <input type="int" name="chesse"     value=0 /> </li>
             <li>Σπανακόπιτα:</br> <input type="int" name="spinach"    value=0 /> </li>
             <li>Κέικ:</br>        <input type="int" name="cake"       value=0 /> </li>
-            <li>Κουλούρι:</br>    <input type="int" name="cappuccino" value=0 /> </li>
+            <li>Κουλούρι:</br>    <input type="int" name="bread"      value=0 /> </li>
             <li>Τόστ:</br>        <input type="int" name="toast"      value=0 /> </li>
           </ul>
         </fieldset>
         <div id="breaker"></div>
         <input type="submit" value="Καταχώρηση">
       </form>
-
+      <div id="map" style="width:800px;height:400px;background:yellow;margin:0 auto 0 auto" align="center"></div>
+      <script>
+  function myMap() {
+  var mapOptions = {
+      center: new google.maps.LatLng(38.5, 21.7),
+      zoom: 10,
+      mapTypeId: google.maps.MapTypeId.HYBRID
+  }
+  var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+  }
+  </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv-et_Cf9pP-sGXnVTlcizr-0h07SMiQU&callback=myMap"></script>
     </article>
 
   </section>

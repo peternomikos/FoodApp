@@ -4,13 +4,15 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="../css/fieldset.css">
+  <script src="../javascript/locationfinder.js"></script>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" type="text/css" href="../css/client_location.css">
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv-et_Cf9pP-sGXnVTlcizr-0h07SMiQU&libraries=places"></script>
   <title>Client_View</title>
 </head>
 
 <body>
-  <script type="text/javascript"
-  src="https://maps.googleapis.com/maps/api/js?key=API_KEY&sensor=false">
-  </script>
+
   <section>
     <h2 id="order" align="center">Τοποθετήστε την παραγγελία σας!<h2>
     <article>
@@ -36,25 +38,26 @@
             <li>Τόστ:</br>        <input type="int" name="toast"      value=0 /> </li>
           </ul>
         </fieldset>
-        <div id="breaker"></div>
         <input type="submit" value="Καταχώρηση">
       </form>
-      <div id="map" style="width:800px;height:400px;background:yellow;margin:0 auto 0 auto" align="center"></div>
-      <script>
-  function myMap() {
-  var mapOptions = {
-      center: new google.maps.LatLng(38.5, 21.7),
-      zoom: 10,
-      mapTypeId: google.maps.MapTypeId.HYBRID
-  }
-  var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-  }
-  </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv-et_Cf9pP-sGXnVTlcizr-0h07SMiQU&callback=myMap"></script>
     </article>
-
   </section>
-
+  <div id="breaker"></div>
+  <div class="pac-card" id="pac-card">
+    <div id="title">
+        Αναζήτηση
+    </div>
+    <div id="pac-container">
+      <input id="pac-input" type="text" placeholder="Εισάγετε μια διεύθυνση">
+    </div>
+  </div>
+  <div id="map"></div>
+  <div id="infowindow-content">
+    <img src="" width="16" height="16" id="place-icon">
+    <span id="place-name"  class="title"></span><br>
+    <span id="place-address"></span>
+  </div>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv-et_Cf9pP-sGXnVTlcizr-0h07SMiQU&libraries=places&callback=initMap"
+  async defer></script>
 </body>
-
 </html>

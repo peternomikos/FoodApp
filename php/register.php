@@ -8,8 +8,18 @@ if (mysqli_connect_error())
 $password  = $_POST['password'];
 $email     = $_POST['email'];
 $telephone = $_POST['telephone'];
+$cpassword = $_POST['passauth'];
 
+if ($password==$cpassword){
 $sql = "INSERT into costumer (email, password, telephone) VALUES ('".$_POST['email']."','".$_POST['password']."','".$_POST['telephone']."')";
+}
+else{
+	echo "passwords dont match";
+header("location:../html/Register.html");
+}
+
+
+
 
 if ($conn->query($sql) === TRUE) {
     echo "Καλώς Ήρθατε στο FooDelicious";

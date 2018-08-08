@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="gr">
 
 <head>
@@ -10,9 +10,13 @@
     <h4 id="registerpage" align="center">Εγγραφή</h4>
     <article id="register">
       <form action="..\php\register.php" method="POST" align="center">
-        E-mail:   <input type="text"     name="email"     required    /><br>
-        Κωδικός:  <input type="password" name="password"  required    /><br>
-        Τηλέφωνο: <input type="tel"      name="telephone" required    /><br>
+        E-mail:   <input type="email"     name="email"     required    /><br>
+        Κωδικός:  <input type="password" name="password"  required  
+            pattern=".{6,}"  		/><br>
+        Επαλήθευση κωδικού:<input type='password' name='passauth' required /><br>
+        Τηλέφωνο: <input type="tel"      name="telephone" required  
+           placeholder="6977000000"
+           pattern="69[0-9]{8}"		/><br>
                   <input type="submit"   name="submit" value="Εγγραφή"/>
       </form>
     </article>

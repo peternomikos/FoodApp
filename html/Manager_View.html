@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<?php
+ session_start();
+?>
+<html lang="gr">
+
+<head>
+  <title>Manager_View</title>
+</head>
+
+<?php
+
+$conn = mysqli_connect('localhost', 'root','','foodApp');
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+$sql = "UPDATE stock SET Cheesepie_Reserve='',Simit_Reserve='',Tost_Reserve='',Cake_Reserve='',Spinachpie_Reserve='' WHERE id=12,13,14,15,16";
+
+if (mysqli_query($conn, $sql)) {
+    echo "Record updated successfully";
+} else {
+    echo "Error updating record: " . mysqli_error($conn);
+}
+
+mysqli_close($conn);
+?>
+
+<body>
+
+  <section>
+
+    <article>
+
+    </article>
+
+  </section>
+
+</body>
+
+</html>

@@ -1,12 +1,7 @@
   // This example requires the Places library. Include the libraries=places
   // parameter when you first load the API. For example:
   // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-  function placeMarker(location) {
-    var marker = new google.maps.Marker({
-        position: myLatlng,
-        map: map
-    });
-  }
+
   function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 54, lng: 54},
@@ -35,9 +30,7 @@
       map: map,
       anchorPoint: new google.maps.Point(0, -29)
     });
-    google.maps.event.addListener(map, 'click', function(event) {
-      placeMarker(event.latLng);
-    });
+    
     autocomplete.addListener('place_changed', function() {
       infowindow.close();
       marker.setVisible(false);

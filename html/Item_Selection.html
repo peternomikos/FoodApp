@@ -1,0 +1,63 @@
+<?php
+    session_start();
+    if (!isset($_SESSION['login_user']))
+    header("location:../index.html");
+
+    $conn = new mysqli('localhost', 'root', '', 'FoodService');
+
+    $sql = "SELECT * FROM stock";
+    $result = mysqli_query($conn,$sql);
+    $row = mysqli_fetch_assoc($result);
+
+   $address   = $_POST['address'];
+   $latitude  = $_POST['latitude'];
+   $longitude = $_POST['longitude'];
+   echo $address;
+   echo $latitude;
+?>
+
+<!DOCTYPE html>
+<html lang="gr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" type="text/css" href="../css/fieldset.css">
+  <link rel="stylesheet" type="text/css" href="../css/client_location.css">
+  <title>Item_Selection</title>
+</head>
+
+<body>
+
+  <section>
+    <h2 id="order" align="center">Τοποθετήστε την παραγγελία σας!<h2>
+    <article>
+
+      <form action="../php/ordering.php" method="POST" class="wrapper">
+        <fieldset>
+          <legend>Παραγγελία Καφέ</legend>
+          <ul>
+            <li>Ελληνικός:<?php echo $row["Greek_Coffer_Price"];echo " €"; ?></br>  <input type="int" name="greek"      value=0 /> </li>
+            <li>Φραπέ:<?php echo $row["Frape_Price"];echo " €"; ?>    </br>  <input type="int" name="frape"      value=0 /> </li>
+            <li>Εσπρέσο:<?php echo $row["Espresso_Price"];echo " €"; ?></br>    <input type="int" name="espreso"    value=0 /> </li>
+            <li>Καπουτσίνο:<?php echo $row["Cappuccino_Price"];echo " €"; ?></br> <input type="int" name="cappuccino" value=0 /> </li>
+            <li>Φίλτρου:<?php echo $row["French_Coffer_Price"];echo " €"; ?></br>    <input type="int" name="french"     value=0 /> </li>
+          </ul>
+        </fieldset>
+        <fieldset>
+          <legend>Παραγγελία Φαγητού</legend>
+          <ul>
+            <li>Τυρόπιτα:<?php echo $row["Cheesepie_Price"]; echo " €"; ?></br>    <input type="int" name="chesse"     value=0 /> </li>
+            <li>Σπανακόπιτα:<?php echo $row["Spinachpie_Price"];echo " €"; ?></br> <input type="int" name="spinach"    value=0 /> </li>
+            <li>Κέικ:<?php echo $row["Cake_Price"];echo " €"; ?></br>        <input type="int" name="cake"       value=0 /> </li>
+            <li>Κουλούρι:<?php echo $row["Simit_Price"];echo " €"; ?></br>    <input type="int" name="bread"      value=0 /> </li>
+            <li>Τόστ:<?php echo $row["Tost_Price"];echo " €"; ?></br>        <input type="int" name="toast"      value=0 /> </li>
+          </ul>
+        </fieldset>
+        <input type="submit" value="Καταχώρηση">
+      </form>
+    </article>
+  </section>
+  <div id="breaker"></div>
+</body>
+</html>

@@ -2,7 +2,8 @@
 <html lang="gr">
 
 <head>
-  <meta charset="utf-8">
+<meta charset="UTF-8">
+  <title>Καλως ήλθατε!</title>
 </head>
 
 <body>
@@ -10,10 +11,13 @@
     <h4 id="registerpage" align="center">Εγγραφή</h4>
     <article id="register">
       <form action="..\php\register.php" method="POST" align="center">
-        E-mail:   <input type="text"     name="email"     required    /><br>
-        Κωδικός:  <input type="password" name="password"  required    /><br>
-        Τηλέφωνο: <input type="tel"      name="telephone" required    /><br>
-                  <input type="submit"   name="submit" value="Εγγραφή"/>
+	      Όνομα:        <input type="text"     name="name"      required    /><br>
+        Επίθετο:      <input type="text"     name="surname"   required    /><br>
+		    E-mail:       <input type="text"     name="email"     required    /><br>
+        Κωδικός:      <input type="password" name="password"  required    /><br>
+        Επιβεβαίωση:  <input type="password" name="password2" required    /><br>
+        Τηλέφωνο:     <input type="tel"      name="telephone" required  pattern="[0-9]{10}"  /><br>
+                      <input type="submit"   name="submit" value="Εγγραφή"/>
       </form>
     </article>
   </section>

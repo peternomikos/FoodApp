@@ -2,7 +2,7 @@
 <html lang="gr">
 
 <head>
-  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <?php
 if (isset($_SESSION['login_user']))
@@ -21,28 +21,34 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   $sqlclient = "SELECT email FROM costumer WHERE email = '$myuseremail' and password = '$myuserpassword'";
   $result_c = mysqli_query($db, $sqlclient);
 
-  $sqlmandel = "SELECT Distributer FROM manager WHERE Username = '$myuseremail' and Password = '$myuserpassword'";
-  $result_m_d = mysqli_query($db, $sqlmandel);
+  $sqlman = "SELECT Username FROM manager WHERE Username = '$myuseremail' and Password = '$myuserpassword'";
+  $result_m = mysqli_query($db, $sqlman);
 
+  $sqldel = "SELECT Username FROM manager WHERE Username = '$myuseremail' and Password = '$myuserpassword'";
+  $result_d = mysqli_query($db, $sqldel);
 
   $count_client = mysqli_num_rows($result_c);
-  $count_mandel = mysqli_num_rows($result_m_d);
+  $count_man = mysqli_num_rows($result_m);
+  $count_del = mysqli_num_rows($result_d);
 
-  if($count_mandel==1){
+  if($count_man==1){
     $_SESSION['login_user'] = $myuseremail;
-    $row = $result_m_d->fetch_array(MYSQLI_NUM);
+    $row = $result_m->fetch_array(MYSQLI_NUM);
 
-    if($row[0]==0){
-      header("location:../html/Manager_View.html");
-    } else {
-      header("location:../html/Delivery_View.html");
-    }
+	   header("location:../html/Manager_View.html");
+
   } else if($count_client==1){
     $_SESSION['login_user'] = $myuseremail;
+
     header("location:../html/Client_View.html");
+
+  } else if($count_del==1) {
+
+	   header("location:../html/Delivery_View.html");
+
   } else {
-    $error = "Your Login credentials are invalid";
-    header("location:../index.html");
+    echo("<script>alert('Κάτι πήγε λάθος. Παρακαλώ εισάγεται πάλι τα στοιχεία σας')</script>");
+    echo("<script>window.location = '../index.html';</script>");
   }
 }
 $db->close();

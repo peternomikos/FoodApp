@@ -6,7 +6,7 @@ session_start();
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-7"/>
 </head>
 <?php
-session_unset();
+session_destroy(); 
 header(location:"../index.html");
 ?>
 </html>

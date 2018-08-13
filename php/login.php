@@ -14,12 +14,15 @@ echo "<br><a href='logout.php'>Log off</a>";
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
   $db = new mysqli('localhost', 'root', '', 'FoodService');
+  mysqli_query($db,"SET NAMES 'utf8'");
+  mysqli_query($db,"SET CHARACTER SET 'utf8'");
 
   $myuserpassword  = $_POST['password'];
   $myuseremail     = $_POST['email'];
 
-  $sqlclient = "SELECT email FROM costumer WHERE email = '$myuseremail' and password = '$myuserpassword'";
+  $sqlclient = "SELECT * FROM costumer WHERE email = '$myuseremail' and password = '$myuserpassword'";
   $result_c = mysqli_query($db, $sqlclient);
+  $customer = mysqli_fetch_array($result_c);
 
   $sqlman = "SELECT Username FROM manager WHERE Username = '$myuseremail' and Password = '$myuserpassword'";
   $result_m = mysqli_query($db, $sqlman);
@@ -38,7 +41,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	   header("location:../html/Manager_View.html");
 
   } else if($count_client==1){
-    $_SESSION['login_user'] = $myuseremail;
+    $_SESSION['user_email'] = $customer['email'];
+    $_SESSION['user_name'] = $customer['name'];
+    $_SESSION['user_surname'] = $customer['surname'];
+    $_SESSION['user_telephone'] = $customer['Telephone'];
 
     header("location:../html/Item_Selection.html");
 

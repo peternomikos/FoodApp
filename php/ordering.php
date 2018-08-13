@@ -20,7 +20,9 @@ session_start();
     $minimumDist1 = 999999999999;
 
     $conn = new mysqli('localhost', 'root', '', 'FoodService');
-
+    mysqli_query($conn,"SET NAMES 'utf8'");
+    mysqli_query($conn,"SET CHARACTER SET 'utf8'");
+    
     $store_q="SELECT * FROM store";
     $stores = $conn->query($store_q);
 
@@ -60,11 +62,16 @@ session_start();
       $result =mysqli_query($conn, $sql);
       $product = mysqli_fetch_array($result);
 
-      $new_chesse = $stockrow['Cheesepie_Reserve'] - $_POST['chesse'];
-      $new_spinach = $stockrow['Spinachpie_Reserve'] - $_POST['spinach'];
-      $new_bread = $stockrow['Simit_Reserve'] - $_POST['bread'];
-      $new_toast = $stockrow['Tost_Reserve'] - $_POST['toast'];
-      $new_cake = $stockrow['Cake_Reserve'] - $_POST['cake'];
+      $new_chesse = $product['Cheesepie_Reserve'] - $_POST['chesse'];
+      $new_spinach = $product['Spinachpie_Reserve'] - $_POST['spinach'];
+      $new_bread = $product['Simit_Reserve'] - $_POST['bread'];
+      $new_toast = $product['Tost_Reserve'] - $_POST['toast'];
+      $new_cake = $product['Cake_Reserve'] - $_POST['cake'];
+
+      $totalcost = $_POST['chesse'] * $product['Cheesepie_Price'] + $_POST['spinach'] * $product['Spinachpie_Price'] + $_POST['bread'] * $product['Simit_Price'] +
+      $_POST['toast'] * $product['Tost_Price'] + $_POST['cake'] * $product['Cake_Price'] + $_POST['greek'] * $product['Greek_Coffer_Price'] +
+      $_POST['frape'] * $product['Frape_Price'] + $_POST['espreso'] * $product['Espresso_Price'] + $_POST['cappuccino'] * $product['Cappuccino_Price'] +
+      $_POST['french'] * $product['French_Coffer_Price'];
 
       $sql = "UPDATE stock SET Cheesepie_Reserve = '".$new_chesse."', Spinachpie_Reserve = '".$new_spinach."',
        Simit_Reserve = '".$new_bread."', Tost_Reserve = '".$new_toast."', Cake_Reserve = '".$new_cake."'
@@ -73,9 +80,19 @@ session_start();
        $result = $conn->query($sql);
 
        $today = date("Y-m-d");
+       $adress = $_POST['address'];
+       $user_name = $_SESSION['user_name'];
+       $user_sur = $_SESSION['user_surname'];
+       $user_email = $_SESSION['user_email'];
+       $user_tel = $_SESSION['user_telephone'];
 
-       echo("<script>alert('Η παραγγελία σας καταχωρήθηκε επιτυχώς. Εκτιμώμενος χρόνος παράδοσης 30 λεπτά.')</script>");
-       echo("<script>window.location = '../html/Item_Selection.html';</script>");
+       $sql = "INSERT INTO orders(id, address, name, surname, lat, lng, dateoforder, email, st_address, st_lat, st_lng, kilometers, cost, telephone)
+       VALUES (NULL,'$adress','$user_name','$user_sur', '$latitude', '$longitude', '$today', '$user_email', '$index', '$finallat', '$finallng', '$minimumDist1', '$totalcost','$user_tel')";
+
+       $result = $conn->query($sql);
+
+       /*echo("<script>alert('Η παραγγελία σας καταχωρήθηκε επιτυχώς. Εκτιμώμενος χρόνος παράδοσης 30 λεπτά.')</script>");
+       echo("<script>window.location = '../html/Item_Selection.html';</script>");*/
 
     } else {
       echo("<script>alert('Δεν υπάρχει αρκετό απόθεμα. Παρακαλούμε, επαναλάβετε την παραγγελία σας.')</script>");

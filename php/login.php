@@ -40,7 +40,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   } else if($count_client==1){
     $_SESSION['login_user'] = $myuseremail;
 
-    header("location:../html/Client_View.html");
+    header("location:../html/Item_Selection.html");
 
   } else if($count_del==1) {
 

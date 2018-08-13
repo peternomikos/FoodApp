@@ -21,7 +21,7 @@
 
 <body>
 
-  <form action="Item_Selection.html" method="post">
+  <form action="../php/ordering.php" method="post">
     <tr>
         <p>Διεύθυνση</p>
 
@@ -117,14 +117,24 @@
 
 			</script>
 
-            <div id="myMap"></div>
-            <input type="hidden" name="latitude" id="latitude" placeholder="Latitude"/>
-            <input type="hidden" name="longitude" id="longitude" placeholder="Longitude"/>
-            <br>
-        <br>
-        <a>
-            <button class="button" id="button"> Επιλογή τοποθεσίας</button>
-        </a>
+      <div id="myMap"></div>
+      <input type="hidden" name="latitude" id="latitude" placeholder="Latitude"/>
+      <input type="hidden" name="longitude" id="longitude" placeholder="Longitude"/>
+      <input type="hidden" name="chesse" id="chesse" value = <?php echo $_POST['chesse']; ?> />
+      <input type="hidden" name="spinach" id="spinach" value = <?php echo $_POST['spinach']; ?> />
+      <input type="hidden" name="bread" id="bread" value = <?php echo $_POST['bread']; ?> />
+      <input type="hidden" name="toast" id="toast" value = <?php echo $_POST['toast']; ?> />
+      <input type="hidden" name="cake" id="cake" value = <?php echo $_POST['cake']; ?> />
+      <input type="hidden" name="greek" id="greek" value = <?php echo $_POST['greek']; ?> />
+      <input type="hidden" name="frape" id="frape" value = <?php echo $_POST['frape']; ?> />
+      <input type="hidden" name="espreso" id="espreso" value = <?php echo $_POST['espreso']; ?> />
+      <input type="hidden" name="cappuccino" id="cappuccino" value = <?php echo $_POST['cappuccino']; ?> />
+      <input type="hidden" name="french" id="french" value = <?php echo $_POST['french'];  ?>/>
+      <br>
+      <br>
+      <a>
+          <button class="button" id="button"> Επιλογή τοποθεσίας</button>
+      </a>
   </form>
 
 </body>

@@ -54,7 +54,7 @@
   if (mysqli_query($conn, $sql)) {
       echo("<script>alert('New record created successfully')</script>");
       $_SESSION['login_user'] = $email;
-      header("location:../html/Client_View.html");
+      header("location:../html/Item_Selection.html");
   } else {
       echo "Error: " . $sql . "<br>" . mysqli_error($conn);
   }

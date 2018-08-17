@@ -1,0 +1,49 @@
+<?php
+session_start();
+?>
+
+<!DOCTYPE html>
+<html lang="gr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" type="text/css" href="../css/fieldset.css">
+  <link rel="stylesheet" type="text/css" href="../css/client_location.css">
+  <title>Item_Selection</title>
+</head>
+
+<body>
+
+  <section>
+    <h2 id="order" align="center">Τοποθετήστε την παραγγελία σας!<h2>
+    <article>
+
+      <form action="../html/Location_Selection.html" method="POST" class="wrapper">
+        <fieldset>
+          <legend>Παραγγελία Καφέ</legend>
+          <ul>
+            <li>Ελληνικός: </br>  <input type="int" name="greek"      value=0 /> </li>
+            <li>Φραπέ:     </br>  <input type="int" name="frape"      value=0 /> </li>
+            <li>Εσπρέσο:   </br>  <input type="int" name="espreso"    value=0 /> </li>
+            <li>Καπουτσίνο:</br>  <input type="int" name="cappuccino" value=0 /> </li>
+            <li>Φίλτρου:   </br>  <input type="int" name="french"     value=0 /> </li>
+          </ul>
+        </fieldset>
+        <fieldset>
+          <legend>Παραγγελία Φαγητού</legend>
+          <ul>
+            <li>Τυρόπιτα:    </br>  <input type="int" name="chesse"     value=0 /> </li>
+            <li>Σπανακόπιτα: </br>  <input type="int" name="spinach"    value=0 /> </li>
+            <li>Κέικ:        </br>  <input type="int" name="cake"       value=0 /> </li>
+            <li>Κουλούρι:    </br>  <input type="int" name="bread"      value=0 /> </li>
+            <li>Τόστ:        </br>  <input type="int" name="toast"      value=0 /> </li>
+          </ul>
+        </fieldset>
+        <input type="submit" value="Καταχώρηση">
+      </form>
+    </article>
+  </section>
+  <div id="breaker"></div>
+</body>
+</html>

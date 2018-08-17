@@ -1,0 +1,40 @@
+
+<?php
+session_start();
+?>
+
+<!DOCTYPE html>
+<html lang="gr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <title>Item_Selection</title>
+</head>
+
+<body>
+
+  <section>
+    <h2 id="order" align="center">Ενημέρωση αποθέματος τροφίμων!<h2>
+    <article>
+
+      <form action="Update_stock.php" method="POST" class="wrapper">
+        
+        <fieldset>
+          <legend>Παραγγελία Φαγητού</legend>
+          <ul>
+            <li>Τυρόπιτα:    </br>  <input type="int" name="chesse"     value=- /> </li>
+            <li>Σπανακόπιτα: </br>  <input type="int" name="spinach"    value=- /> </li>
+            <li>Κέικ:        </br>  <input type="int" name="cake"       value=- /> </li>
+            <li>Κουλούρι:    </br>  <input type="int" name="bread"      value=- /> </li>
+            <li>Τόστ:        </br>  <input type="int" name="toast"      value=- /> </li>
+          </ul>
+        </fieldset>
+        <input type="submit" value="Καταχώρηση">
+		<input type="submit" value="Mισθός manager">
+      </form>
+    </article>
+  </section>
+  <div id="breaker"></div>
+</body>
+</html>

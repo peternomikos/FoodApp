@@ -9,7 +9,7 @@ session_start();
 
 <?php
 
-    if (!isset($_SESSION['login_user']))
+    if (!isset($_SESSION['user_name']))
     header("location:../index.html");
 
     $address   = $_POST['address'];
@@ -22,7 +22,7 @@ session_start();
     $conn = new mysqli('localhost', 'root', '', 'FoodService');
     mysqli_query($conn,"SET NAMES 'utf8'");
     mysqli_query($conn,"SET CHARACTER SET 'utf8'");
-    
+
     $store_q="SELECT * FROM store";
     $stores = $conn->query($store_q);
 
@@ -86,13 +86,13 @@ session_start();
        $user_email = $_SESSION['user_email'];
        $user_tel = $_SESSION['user_telephone'];
 
-       $sql = "INSERT INTO orders(id, address, name, surname, lat, lng, dateoforder, email, st_address, st_lat, st_lng, kilometers, cost, telephone)
-       VALUES (NULL,'$adress','$user_name','$user_sur', '$latitude', '$longitude', '$today', '$user_email', '$index', '$finallat', '$finallng', '$minimumDist1', '$totalcost','$user_tel')";
+       $sql = "INSERT INTO orders(id, address, name, surname, lat, lng, dateoforder, email, st_address, st_lat, st_lng, kilometers, cost, telephone,mydistfromstore)
+       VALUES (NULL,'$adress','$user_name','$user_sur', '$latitude', '$longitude', '$today', '$user_email', '$index', '$finallat', '$finallng', '$minimumDist1', '$totalcost','$user_tel',0)";
 
        $result = $conn->query($sql);
 
-       /*echo("<script>alert('Η παραγγελία σας καταχωρήθηκε επιτυχώς. Εκτιμώμενος χρόνος παράδοσης 30 λεπτά.')</script>");
-       echo("<script>window.location = '../html/Item_Selection.html';</script>");*/
+       echo("<script>alert('Η παραγγελία σας καταχωρήθηκε επιτυχώς. Εκτιμώμενος χρόνος παράδοσης 30 λεπτά.')</script>");
+       echo("<script>window.location = '../html/Item_Selection.html';</script>");
 
     } else {
       echo("<script>alert('Δεν υπάρχει αρκετό απόθεμα. Παρακαλούμε, επαναλάβετε την παραγγελία σας.')</script>");

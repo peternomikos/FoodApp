@@ -11,6 +11,17 @@ echo "Έχεις κάνει ήδη login <b>".$_SESSION['login_user']."</b>! Μ�
 echo "<br><a href='logout.php'>Log off</a>";
 }
 
+if (isset($_SESSION['user_name']))
+{
+echo "Έχεις κάνει ήδη login <b>".$_SESSION['user_name']."</b>! Μια φορά αρκεί.";
+echo "<br><a href='logout.php'>Log off</a>";
+}
+
+if (isset($_SESSION['username']))
+{
+echo "Έχεις κάνει ήδη login <b>".$_SESSION['username']."</b>! Μια φορά αρκεί.";
+echo "<br><a href='logout.php'>Log off</a>";
+}
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
   $db = new mysqli('localhost', 'root', '', 'FoodService');
@@ -27,8 +38,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   $sqlman = "SELECT Username FROM manager WHERE Username = '$myuseremail' and Password = '$myuserpassword'";
   $result_m = mysqli_query($db, $sqlman);
 
-  $sqldel = "SELECT Username FROM manager WHERE Username = '$myuseremail' and Password = '$myuserpassword'";
+  $sqldel = "SELECT Username FROM deliverygirlboy WHERE Username = '$myuseremail' and Password = '$myuserpassword'";
   $result_d = mysqli_query($db, $sqldel);
+  $delivery = mysqli_fetch_array($result_d);
 
   $count_client = mysqli_num_rows($result_c);
   $count_man = mysqli_num_rows($result_m);
@@ -49,8 +61,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     header("location:../html/Item_Selection.html");
 
   } else if($count_del==1) {
+    $_SESSION['username'] = $myuseremail;
 
-	   header("location:../html/Delivery_View.html");
+	   header("location:del_login_location.php");
 
   } else {
     echo("<script>alert('Κάτι πήγε λάθος. Παρακαλώ εισάγεται πάλι τα στοιχεία σας')</script>");

@@ -76,6 +76,9 @@
   <a href="orderdone.php">
     <input class="button button1" type="button"  name="done" id="done" value="Ολοκλήρωση Παραγγελίας">
   </a>
+  <a href="endshift.php">
+    <input class ='button button2' type="button" name="endshift" id="endshift" value="Τέλος βάρδιας!">
+  </a>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
             <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4kFxsuS6usfZ9-B4ZKLMw6YZwjBTkwfM&libraries=places"></script>
             <script type="text/javascript">

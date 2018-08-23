@@ -9,7 +9,9 @@
 
 
     //apothikeusi tis topothesias tou delivera stin vasi
-    $sql = "UPDATE deliverygirlboy SET lat = '".$_POST['latitude']."', lon = '".$_POST['longitude']."' WHERE username='".$_SESSION['username']."'";
+    $sql = "UPDATE deliverygirlboy
+    SET lat = '".$_POST['latitude']."', lon = '".$_POST['longitude']."'
+    WHERE username='".$_SESSION['username']."'";
     $result = $db->query($sql);
 
     echo("<script>alert('Παρακαλώ περιμένετε. Θα ενημερωθείτε μόλις υπάρξει κάποια παραγγελία προς παράδοση.')</script>");

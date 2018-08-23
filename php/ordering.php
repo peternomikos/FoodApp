@@ -91,7 +91,8 @@ session_start();
 
        $result = $conn->query($sql);
 
-       echo("<script>alert('Η παραγγελία σας καταχωρήθηκε επιτυχώς. Εκτιμώμενος χρόνος παράδοσης 30 λεπτά.')</script>");
+       echo("<script>alert('Η παραγγελία σας καταχωρήθηκε επιτυχώς. Εκτιμώμενος χρόνος παράδοσης 20 λεπτά.')</script>");
+       echo '<script type="text/javascript">alert("Το ποσό της παραγγελίας σας είναι '.$totalcost.' €");</script>';
        echo("<script>window.location = '../html/Item_Selection.html';</script>");
 
     } else {

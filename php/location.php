@@ -3,19 +3,21 @@
   if (!isset($_SESSION['username']))
   header("location: login.php");
 
+  $deliverypersonel = $_SESSION['username'];
+
   $db = new mysqli('localhost', 'root', '', 'FoodService');
   mysqli_query($db,"SET NAMES 'utf8'");
   mysqli_query($db,"SET CHARACTER SET 'utf8'");
 
   //energopoiisi delivera kai kataxorisi topothesias tou
   $sql = "UPDATE deliverygirlboy
-  SET deliverygirlboy.status = 1
+  SET status = 1
   WHERE Username = '" . $_SESSION['username'] ."'";
   $result = $db->query($sql);
 
 
-  $sql1 = "INSERT INTO timetable_del (username, start_shift )
-    VALUES ( '" . $_SESSION['username'] ."', now() )";
+  $sql1 = "INSERT INTO timetable_del (username, key_)
+           VALUES ( '$deliverypersonel', NULL )";
   $result = $db->query($sql1);
 
 ?>

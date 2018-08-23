@@ -15,7 +15,7 @@ $manager = $_SESSION['login_user'];
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
- if Cheesepie_Reserve='-',Simit_Reserve='-',Tost_Reserve='-',Cake_Reserve='-',Spinachpie_Reserve='-'{
+ if Cheesepie_Reserve!='-',Simit_Reserve!='-',Tost_Reserve!='-',Cake_Reserve!='-',Spinachpie_Reserve!='-'{
 $sql = "UPDATE stock SET Cheesepie_Reserve='',Simit_Reserve='',Tost_Reserve='',Cake_Reserve='',Spinachpie_Reserve='' WHERE  Shop_Manager='$manager'";
  }
 
@@ -26,6 +26,8 @@ if (mysqli_query($con, $sql)) {
     echo "Error updating record: " . mysqli_error($conn);
 }
 
+ //Μισθός_managerισθός_manager=800;
+    //echo $Μισθός_manager;
 mysqli_close($conn);
 ?>
 

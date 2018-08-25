@@ -79,6 +79,9 @@
   <a href="endshift.php">
     <input class ='button button2' type="button" name="endshift" id="endshift" value="Τέλος βάρδιας!">
   </a>
+  <a href="logout.php">
+    <input class ='button button3' type="button" name="=logout" id="logout" value="Logout!">
+  </a>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
             <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4kFxsuS6usfZ9-B4ZKLMw6YZwjBTkwfM&libraries=places"></script>
             <script type="text/javascript">

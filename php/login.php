@@ -69,7 +69,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     echo("<script>alert('Κάτι πήγε λάθος. Παρακαλώ εισάγεται πάλι τα στοιχεία σας')</script>");
     echo("<script>window.location = '../index.html';</script>");
   }
+  $db->close();
 }
-$db->close();
+
 ?>
 </html>

@@ -23,7 +23,7 @@
 
   $sql = "UPDATE timetable_del
           SET end_shift=NOW()
-          WHERE username='".$_SESSION['username']."'";
+          WHERE username='".$_SESSION['username']."' AND end_shift = start_shift";
   $result = $db->query($sql);
 
   $sql = "UPDATE deliverygirlboy
@@ -52,23 +52,16 @@
       $totalseconds = $endshifts - $startshifts;
       $totalminutes = $endshiftm - $startshiftm;
       $totalhours   = $endshifth - $startshifth;
-
-      echo $totalseconds;
-      echo "<br>";
-      echo $totalminutes;
-      echo "<br>";
-      echo $totalhours;
-      echo "<br>";
       }
   }
 
   $sql1 = "SELECT * FROM orders WHERE deliverygirlboy = '".$_SESSION['username']."' ";
   $result1 = $db->query($sql1);
-
+  $routecounter=0;
   while($row1 = mysqli_fetch_array($result1)){
 
     if ($shift === $today){
-
+      $routecounter++;
       $kilomtostore +=  $row1["mydistfromstore"];
       $kilomtoclien +=  $row1["kilometers"];
 
@@ -88,5 +81,13 @@
   $sql = "UPDATE deliverygirlboy SET daypay = '".$payment."'
           WHERE Username = '" . $_SESSION['username'] ."'";
   $result = $db->query($sql);
+  $totalkilometers *= 1000;
+  echo "You have worked for " .$totalhours. " hours.";
+  echo "<br>";
+  echo "You have made " .$routecounter. " routes and " .$totalkilometers. " kilometers in total.";
+  echo "<br>";
+  ?>
 
-?>
+  <a href="location.php">
+     <input class="button button1" type="button"  name="activation" id="activation" value="Ενεργοποίηση">
+  </a>

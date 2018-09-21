@@ -22,7 +22,7 @@
   $del_lon = $row['lon'];
 
   if($status == 1){
-    $sql="SELECT * FROM orders WHERE status=0 AND deliverygirlboy IS NULL";
+    $sql="SELECT * FROM orders WHERE status=0 AND (deliverygirlboy IS NULL || deliverygirlboy='".$_SESSION['username']."')";
     $result = $db->query($sql);
     $count=mysqli_num_rows($result);
 

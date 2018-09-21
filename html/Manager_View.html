@@ -19,7 +19,7 @@ session_start();
     <article>
 
       <form action="../php/Update_stock.php" method="POST" class="wrapper">
-        
+
         <fieldset>
           <legend>Ενημέρωση αποθέματος τροφίμων!</legend>
           <ul>
@@ -31,7 +31,10 @@ session_start();
           </ul>
         </fieldset>
         <input type="submit" value="Καταχώρηση">
-		
+
+      </form>
+      <form action="../php/OrdersInProgress.php" method="POST" class="wrapper">
+        <input type="submit" value="Check Orders">
       </form>
     </article>
   </section>

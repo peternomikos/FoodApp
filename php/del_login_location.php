@@ -21,8 +21,10 @@
 }else{ //an einai energopoiimenos
     echo "&nbsp &nbspΜην παραλείψετε να αποσυνδεθείτε όταν τελειώσει η βάρδιά σας. <br>";
     echo "&nbsp &nbspΠαρακαλώ, να ανανεώνετε την σελίδα ΠΑΡΑΓΓΕΛΙΕΣ<br>&nbsp &nbsp για να ενημερώνεστε για νέα ανάθεση παραγγελίας. <br><br>";
+    ?>
+    <a href="checkpendingorders.php">
+       <input class="button button1" type="button"  name="orders" id="orders" value="Τσέκαρε τις παραγγελίες">
+    </a>
+    <?php
   }
-?>
-<a href="checkpendingorders.php">
-   <input class="button button1" type="button"  name="orders" id="orders" value="Τσέκαρε τις παραγγελίες">
-</a>
+  ?>

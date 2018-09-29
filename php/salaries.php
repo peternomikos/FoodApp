@@ -2,7 +2,7 @@
 $db = new mysqli('localhost', 'root', '', 'FoodService');
 mysqli_query($db,"SET NAMES 'utf8'");
 mysqli_query($db,"SET CHARACTER SET 'utf8'");
-
+$filename = "C:\wamp64\www\FoodApp\php\salaries.txt";
 $month = $_GET['month'];
 $year = $_GET['year'];
 
@@ -30,7 +30,7 @@ while($row = mysqli_fetch_array($result)){  //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿
 	$data .= "              <iban>".$row["IBAN"]."</iban>\n";
 
 	//------------salary---------//
-	$sql1 = "SELECT * FROM stores WHERE Store_Manager = '".$row['Username']."'";
+	$sql1 = "SELECT * FROM store WHERE Store_Manager = '".$row['Username']."'";
 	$result1 = mysqli_query($db,$sql1);
 	$row1 =  mysqli_fetch_array($result1);
 
@@ -98,14 +98,19 @@ while($row = mysqli_fetch_array($result)){  //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿
 			$totalklm = $totalklm + $row1["kilometers"] + $row1["mydistfromstore"]; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 		}
 	}
-
+  $totalklm /= 1000;
 	$sql2 = "SELECT * FROM timetable_del WHERE username = '".$row["Username"]."' ";
 	$result2 = $db->query($sql2);
 
 	$totalhours = 0;
 	$totalminutes = 0;
 	$totalseconds = 0;
-	$totalsecondspershift = 0;
+	$startshifts = 0;
+	$endshifts = 0;
+	$startshiftm = 0;
+	$endshiftm = 0;
+	$startshifth = 0;
+	$endshifth = 0;
 
 	while($row2 = mysqli_fetch_array($result2)){ //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
@@ -114,32 +119,30 @@ while($row = mysqli_fetch_array($result)){  //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿
 
 		if ( ($salary_month == $month) && ($salary_year == $year) ){ //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-			$time1 = $row2["start_shift"];
-			$time2 = $row2["end_shift"];
-			$totalsecondspershift = $totalsecondspershift + (strtotime($time2) - strtotime($time1)); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			$startshifts   += date("s", strtotime($row2["start_shift"]));
+      $endshifts     += date("s", strtotime($row2["end_shift"]));
 
-			$hours = $totalsecondspershift/3600;
-			$hours = floor($hours);
+      $startshiftm   += date("i", strtotime($row2["start_shift"]));
+      $endshiftm     += date("i", strtotime($row2["end_shift"]));
 
-			$minutes = ($totalsecondspershift/60) - ($hours * 3600);
-			$minutes = floor($minutes);
+      $startshifth   += date("G", strtotime($row2["start_shift"]));
+      $endshifth     += date("G", strtotime($row2["end_shift"]));
 
-			$seconds = $totalsecondspershift - ($hours * 3600) - ($minutes * 60);
-
-			$totalhours = $totalhours + $hours;
-			$totalminutes = $totalminutes + $minutes;
-			$totalseconds = $totalseconds + $seconds;
+      $totalminutes = $endshiftm - $startshiftm;
+      $totalhours   = $endshifth - $startshifth;
+			if($totalminutes>=20){
+		    $totalhours++;
+		  }
 		}
 	}
 
 	if ( $year_now >= $year ){
 		if ($month_now >= $month ){
-			$salarydel = ($totalklm * 0.0001) + ( 5 * $totalhours) + ( 0.05 * $totalminutes) + ( 0.0008333333 * $totalseconds);
+			$salarydel = ceil(($totalklm * 0.10) + ( 5 * $totalhours));
 		}
 	}
 
 	//------------salary---------//
-	$salarydel = floor ($salarydel * 100) /100;
 	$data .= "              <amount>".$salarydel."</amount>\n";
 	$data .= "          </employee>\n";
 
@@ -150,5 +153,5 @@ while($row = mysqli_fetch_array($result)){  //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿
 $data .= "      </employees>\n";
 $data .= "  </body>\n";
 $data .=  "</xml>\n";
-echo $data;
+file_put_contents($filename,$data);
 ?>

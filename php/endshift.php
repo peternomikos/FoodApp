@@ -60,7 +60,7 @@
   $routecounter=0;
   while($row1 = mysqli_fetch_array($result1)){
 
-    if ($shift === $today){
+    if ($row1["dateoforder"] === $today){
       $routecounter++;
       $kilomtostore +=  $row1["mydistfromstore"];
       $kilomtoclien +=  $row1["kilometers"];
